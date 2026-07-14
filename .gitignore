@@ -1,0 +1,28 @@
+# --- python ---
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+.ruff_cache/
+.coverage
+
+# --- node / next.js ---
+node_modules/
+.next/
+
+# --- secrets: the template is tracked, real values never ---
+.env
+.env.*
+!.env.example
+
+# --- groceries: keep the folders, ignore the contents ---
+data/*
+!data/.gitkeep
+models/*
+!models/.gitkeep
+
+# --- notebooks / editor / os ---
+.ipynb_checkpoints/
+.vscode/
+.DS_Store
+Thumbs.db
