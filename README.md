@@ -7,6 +7,7 @@ Docker Compose · GitHub Actions · NGINX
 
 ## Status
 Phase 1 of 13 — repository initialization.
+Roadmap: [docs/workforce_planning_roadmap.md](docs/workforce_planning_roadmap.md)
 
 ## Running locally
 Assembled phase by phase; one-command startup arrives in Phase 7 (Docker).
