@@ -9,5 +9,5 @@ lint: ## Check all Python code with ruff
 format: ## Auto-format all Python code
 	.venv/bin/ruff format .
 
-test: ## Run test suites (arrives in Phase 3)
-	@echo "No tests yet — pytest lands in Phase 3"
+test: ## Run the backend test suite
+	.venv/bin/pytest backend/tests -v
