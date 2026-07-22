@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from app.routers import products, sales
-
+from fastapi.middleware.cors import CORSMiddleware
 from app.routers import auth, products, sales
 
 
@@ -14,3 +14,10 @@ app.include_router(auth.router, prefix="/api/auth", tags=["auth"])
 def health():
     return {"status": "ok"}
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
