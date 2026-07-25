@@ -8,17 +8,21 @@ export class ApiError extends Error {
 
 async function request<T>(path: string, options: RequestInit = {}): Promise<T> {
   const token = typeof window !== "undefined" ? localStorage.getItem("token") : null;
+  const isJsonBody = typeof options.body === "string";   // JSON.stringify(...) calls are strings; URLSearchParams is not
   const res = await fetch(`${API_BASE}${path}`, {
     ...options,
     headers: {
-      ...(options.body ? { "Content-Type": "application/json" } : {}),
+      ...(isJsonBody ? { "Content-Type": "application/json" } : {}),
       ...(token ? { Authorization: `Bearer ${token}` } : {}),
       ...options.headers,
     },
   });
   if (!res.ok) {
     const body = await res.json().catch(() => ({ detail: res.statusText }));
-    throw new ApiError(res.status, body.detail ?? "Request failed");
+    const message = Array.isArray(body.detail)
+      ? body.detail.map((d: { msg?: string }) => d.msg ?? JSON.stringify(d)).join(", ")
+      : (body.detail ?? "Request failed");
+    throw new ApiError(res.status, message);
   }
   if (res.status === 204) return undefined as T;
   return res.json();

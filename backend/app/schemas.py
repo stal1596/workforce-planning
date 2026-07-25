@@ -35,3 +35,11 @@ class SaleOut(BaseModel):
     product_id: int
     qty: int
     sold_at: date
+
+class ForecastOut(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+    id: int
+    product_id: int
+    date: date
+    predicted_qty: int
+    model_version: str
