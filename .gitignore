@@ -26,3 +26,8 @@ models/*
 .vscode/
 .DS_Store
 Thumbs.db
+
+# --- ml ---
+models/*
+!models/.gitkeep
+!models/runs.csv
