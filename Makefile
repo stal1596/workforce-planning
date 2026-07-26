@@ -11,3 +11,12 @@ format: ## Auto-format all Python code
 
 test: ## Run the backend test suite
 	.venv/bin/pytest backend/tests -v
+
+up: ## Start the whole system
+	docker compose up -d --build
+
+down: ## Stop the whole system
+	docker compose down
+
+logs: ## Tail logs from every service
+	docker compose logs -f
