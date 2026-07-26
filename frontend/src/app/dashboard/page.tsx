@@ -12,7 +12,10 @@ export default function Dashboard() {
   const router = useRouter();
 
   useEffect(() => {
-    if (token === null) return;
+    if (token === null) {
+      router.push("/");
+      return;
+    }
     getProducts()
       .then(setProducts)
       .catch((err) => {
@@ -24,11 +27,6 @@ export default function Dashboard() {
         }
       });
   }, [token, logout, router]);
-
-  if (token === null) {
-    router.push("/");
-    return null;
-  }
 
   return (
     <main className="mx-auto max-w-3xl p-8">
